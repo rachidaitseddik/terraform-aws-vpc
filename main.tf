@@ -1541,3 +1541,4 @@ resource "aws_default_route_table" "default" {
     var.default_route_table_tags,
   )
 }
+
