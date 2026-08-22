@@ -7,9 +7,9 @@ name: Infrastructure diagram
 on:
   pull_request:
     paths:
+      - "examples/simple/**/*.tf"
+      - "examples/simple/**/*.tfvars"
       - "**/*.tf"
-      - "**/*.tfvars"
-      - "**/.terraform.lock.hcl"
       - ".github/workflows/infragram.yml"
 
 permissions:
@@ -31,9 +31,13 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: stable
-      - name: root
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::637423234116:role/infragram-dogfood-plan
+          aws-region: eu-west-1
+      - name: simple
         uses: Tekchbila-Studios/infragram-action@v1
         with:
-          working-directory: "."
-          environment: "root"
+          working-directory: "examples/simple"
+          environment: "simple"
           secret-scan: "warn"
