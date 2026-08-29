@@ -11,6 +11,15 @@ on:
       - "examples/simple/**/*.tf"
       - "examples/simple/**/*.tfvars"
       - "examples/simple/**/.terraform.lock.hcl"
+      - "examples/block-public-access/**/*.tf"
+      - "examples/block-public-access/**/*.tfvars"
+      - "examples/block-public-access/**/.terraform.lock.hcl"
+      - "examples/flow-log/**/*.tf"
+      - "examples/flow-log/**/*.tfvars"
+      - "examples/flow-log/**/.terraform.lock.hcl"
+      - "examples/complete/**/*.tf"
+      - "examples/complete/**/*.tfvars"
+      - "examples/complete/**/.terraform.lock.hcl"
       - ".github/workflows/infragram.yml"
 
 permissions:
@@ -36,9 +45,27 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::637423234116:role/infragram-plan
           aws-region: us-east-1
-      - name: block-public-access
+      - name: simple
         uses: Tekchbila-Studios/infragram-action@v1
         with:
           working-directory: "examples/simple"
+          environment: "simple"
+          secret-scan: "warn"
+      - name: block-public-access
+        uses: Tekchbila-Studios/infragram-action@v1
+        with:
+          working-directory: "examples/block-public-access"
           environment: "block-public-access"
+          secret-scan: "warn"
+      - name: flow-log
+        uses: Tekchbila-Studios/infragram-action@v1
+        with:
+          working-directory: "examples/flow-log"
+          environment: "flow-log"
+          secret-scan: "warn"
+      - name: complete
+        uses: Tekchbila-Studios/infragram-action@v1
+        with:
+          working-directory: "examples/complete"
+          environment: "complete"
           secret-scan: "warn"
