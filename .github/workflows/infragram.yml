@@ -20,6 +20,9 @@ on:
       - "examples/complete/**/*.tf"
       - "examples/complete/**/*.tfvars"
       - "examples/complete/**/.terraform.lock.hcl"
+      - "examples/network-acls/**/*.tf"
+      - "examples/network-acls/**/*.tfvars"
+      - "examples/network-acls/**/.terraform.lock.hcl"
       - ".github/workflows/infragram.yml"
 
 permissions:
@@ -68,4 +71,10 @@ jobs:
         with:
           working-directory: "examples/complete"
           environment: "complete"
+          secret-scan: "warn"
+      - name: network-acls
+        uses: Tekchbila-Studios/infragram-action@v1
+        with:
+          working-directory: "examples/network-acls"
+          environment: "network-acls"
           secret-scan: "warn"
