@@ -72,7 +72,7 @@ jobs:
           working-directory: "examples/complete"
           environment: "complete"
           secret-scan: "block"
-      - name: ipam
+      - name: ipami
         uses: Tekchbila-Studios/infragram-action@v1
         with:
           working-directory: "examples/ipam"
